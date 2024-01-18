@@ -1,2 +1,3 @@
 # dondu
-Single executable todo app.
+
+single executable todo app
