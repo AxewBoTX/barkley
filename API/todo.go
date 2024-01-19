@@ -1,10 +1,12 @@
 package api
 
 import (
+	"database/sql"
+
 	"github.com/gofiber/fiber/v2"
 )
 
-func Todo(router fiber.Router) {
+func Todo(router fiber.Router, DB *sql.DB) {
 	router.Get("/todo", func(c *fiber.Ctx) error {
 		return c.JSON("Get Todo List")
 	})
