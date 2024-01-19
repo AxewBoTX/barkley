@@ -8,10 +8,13 @@ import (
 
 	api "dondu/API"
 	ui "dondu/UI"
+	"dondu/lib"
 )
 
 func main() {
-	const PORT string = ":8080"
+	DB := lib.PrepareDatabase()
+	lib.HandleMigrations(DB)
+
 	server := fiber.New(fiber.Config{
 		AppName: "Dondu",
 	})
@@ -25,7 +28,7 @@ func main() {
 
 	// API routes
 	api_group := server.Group("/api")
-	api.Todo(api_group)
+	api.Todo(api_group, DB)
 
-	server.Listen(PORT)
+	server.Listen(lib.PORT)
 }
