@@ -1,18 +1,16 @@
 <script>
-  import Router from "svelte-spa-router";
-  import Home from "./routes/home.svelte";
-  import About from "./routes/about.svelte";
-  import Posts from "./routes/posts.svelte";
-  import NotFound from "./routes/not_found.svelte";
-
-  const routes = {
-    "/": Home,
-    "/about": About,
-    "/posts": Posts,
-    "*": NotFound,
-  };
+  import CreateTodoModal from "./components/createTodoModal.svelte";
+  import Icon from "@iconify/svelte";
 </script>
 
-<body>
-  <Router {routes} />
-</body>
+<div class="flex flex-col items-center mt-[50px]">
+  <h1 class="text-4xl">Dondu</h1>
+  <div>
+    <button
+      class="btn"
+      on:click={() => document.getElementById("createTodoModal").showModal()}
+      >CREATE <Icon icon="material-symbols:add" class="text-xl" /></button
+    >
+    <CreateTodoModal />
+  </div>
+</div>
