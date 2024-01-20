@@ -1,6 +1,7 @@
 GO := go
 BINARY_NAME := dondu
 BUILD_DIR := build
+DB_DIR := database
 
 build:
 	@mkdir -p $(BUILD_DIR)
@@ -13,5 +14,8 @@ dev:
 
 clean:
 	@rm -rf $(BUILD_DIR)
+clean-all:
+	@rm -rf $(BUILD_DIR)
+	@rm -rf $(DB_DIR)
 
-.PHONY: build dev clean
+.PHONY: build dev clean clean-all
