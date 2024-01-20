@@ -14,7 +14,7 @@ import (
 func main() {
 	DB := lib.PrepareDatabase()
 	lib.HandleMigrations(DB)
-	// lib.GenerateRandomRows(DB)
+
 	defer DB.Close()
 
 	server := fiber.New(fiber.Config{
