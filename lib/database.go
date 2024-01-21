@@ -33,7 +33,6 @@ func HandleMigrations(DB *sql.DB) {
 	if _, table_create_err := DB.Exec(`CREATE TABLE IF NOT EXISTS Todos(
 		id TEXT PRIMARY KEY,
 		title TEXT,
-		description TEXT,
 		done BOOLEAN
 	);`); table_create_err != nil {
 		log.Fatal(table_create_err)
@@ -42,19 +41,17 @@ func HandleMigrations(DB *sql.DB) {
 
 func GenerateRandomRows(DB *sql.DB) {
 	if _, create_err := DB.Exec(
-		`INSERT INTO Todos (id,title,description,done) VAlUES (?,?,?,?)`,
+		`INSERT INTO Todos (id,title,done) VAlUES (?,?,?)`,
 		uuid.NewString(),
 		"Go Shopping",
-		"Buy everything needed for survival",
 		false,
 	); create_err != nil {
 		log.Fatal("Row Create Error:", create_err)
 	}
 	if _, create_err := DB.Exec(
-		`INSERT INTO Todos (id,title,description,done) VALUES (?,?,?,?)`,
+		`INSERT INTO Todos (id,title,done) VALUES (?,?,?)`,
 		uuid.NewString(),
 		"Bath yourself",
-		"You need to stay clean in order to attract females",
 		true,
 	); create_err != nil {
 		log.Fatal("Row Create Error:", create_err)

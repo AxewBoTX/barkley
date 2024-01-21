@@ -24,7 +24,7 @@ func Todo(router fiber.Router, DB *sql.DB) {
 		var Todos []lib.Todo
 		for rows.Next() {
 			var todo lib.Todo
-			if row_scan_err := rows.Scan(&todo.ID, &todo.Title, &todo.Description, &todo.Done); row_scan_err != nil {
+			if row_scan_err := rows.Scan(&todo.ID, &todo.Title, &todo.Done); row_scan_err != nil {
 				log.Println("Row Scan Error:", row_scan_err)
 				return c.Status(fiber.StatusInternalServerError).
 					SendString("Database Row Scan Error")
@@ -43,7 +43,7 @@ func Todo(router fiber.Router, DB *sql.DB) {
 			return c.Status(fiber.StatusInternalServerError).SendString("Request Body Parse Error")
 		}
 		todo.ID = uuid.NewString()
-		if _, row_create_err := DB.Exec(`INSERT INTO Todos (id,title,description,done) VALUES(?,?,?,?)`, todo.ID, todo.Title, todo.Description, todo.Done); row_create_err != nil {
+		if _, row_create_err := DB.Exec(`INSERT INTO Todos (id,title,done) VALUES(?,?,?)`, todo.ID, todo.Title, todo.Done); row_create_err != nil {
 			log.Println("Row Create Error:", row_create_err)
 			return c.Status(fiber.StatusInternalServerError).SendString("Database Row Create Error")
 		}
