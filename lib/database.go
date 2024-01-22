@@ -32,8 +32,7 @@ func PrepareDatabase() *sql.DB {
 func HandleMigrations(DB *sql.DB) {
 	if _, table_create_err := DB.Exec(`CREATE TABLE IF NOT EXISTS Todos(
 		id TEXT PRIMARY KEY,
-		title TEXT,
-		done BOOLEAN
+		title TEXT
 	);`); table_create_err != nil {
 		log.Fatal(table_create_err)
 	}
@@ -41,18 +40,16 @@ func HandleMigrations(DB *sql.DB) {
 
 func GenerateRandomRows(DB *sql.DB) {
 	if _, create_err := DB.Exec(
-		`INSERT INTO Todos (id,title,done) VAlUES (?,?,?)`,
+		`INSERT INTO Todos (id,title) VAlUES (?,?)`,
 		uuid.NewString(),
 		"Go Shopping",
-		false,
 	); create_err != nil {
 		log.Fatal("Row Create Error:", create_err)
 	}
 	if _, create_err := DB.Exec(
-		`INSERT INTO Todos (id,title,done) VALUES (?,?,?)`,
+		`INSERT INTO Todos (id,title) VALUES (?,?)`,
 		uuid.NewString(),
 		"Bath yourself",
-		true,
 	); create_err != nil {
 		log.Fatal("Row Create Error:", create_err)
 	}
