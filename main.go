@@ -1,10 +1,12 @@
 package main
 
 import (
+	"errors"
 	"net/http"
 
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/filesystem"
+	"github.com/charmbracelet/log"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 
 	api "dondu/API"
 	ui "dondu/UI"
@@ -15,16 +17,16 @@ func main() {
 	DB := lib.PrepareDatabase()
 	lib.HandleMigrations(DB)
 
-	defer DB.Close()
+	defer func() {
+		DB.Close()
+	}()
 
-	server := fiber.New(fiber.Config{
-		AppName: "Dondu",
-	})
+	server := echo.New()
 
 	// Rendering web app
-	server.Use("*", filesystem.New(filesystem.Config{
-		Root:       http.FS(ui.DistDir),
-		PathPrefix: "dist",
+	server.Use(middleware.StaticWithConfig(middleware.StaticConfig{
+		Filesystem: http.FS(ui.DistDir),
+		Root:       "dist",
 		Browse:     true,
 	}))
 
@@ -32,5 +34,7 @@ func main() {
 	api_group := server.Group("/api")
 	api.Todo(api_group, DB)
 
-	server.Listen(lib.PORT)
+	if err := server.Start(lib.PORT); err != nil && !errors.Is(err, http.ErrServerClosed) {
+		log.Fatal(err)
+	}
 }
