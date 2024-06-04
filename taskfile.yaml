@@ -1,0 +1,24 @@
+version: "3"
+
+env:
+  BINARY_NAME: "barkley"
+  BUILD_DIR: "build"
+
+tasks:
+  dev:
+    - air -c .air.toml
+  air:
+    # - task: generate
+    - go build -o ./tmp/main .
+  # dev-tw:
+  #   - bun tailwindcss -i ./tailwind/input.css -o ./public/lib/index.css --minify --watch
+  # build-tw:
+  #   - bun tailwindcss -i ./tailwind/input.css -o ./public/lib/index.css --minify
+  # generate:
+  #   - templ generate
+  build:
+    # - task: build-tw
+    - mkdir -p $BUILD_DIR
+    - go build -o $BUILD_DIR/$BINARY_NAME .
+  clean:
+    - rm -rf $BUILD_DIR

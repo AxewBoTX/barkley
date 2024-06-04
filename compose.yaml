@@ -1,0 +1,14 @@
+version: "3.8"
+
+name: barkley
+
+services:
+  barkley:
+    container_name: barkley
+    build:
+      context: .
+      dockerfile: dev.dockerfile
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8080:8080"
