@@ -1,4 +1,4 @@
-FROM docker.io/go:1.22.3
+FROM docker.io/golang:1.22.3
 
 # set the working directory
 WORKDIR /usr/src/app
@@ -9,7 +9,7 @@ COPY . .
 # install needed dependencies
 RUN go mod download && \
 	go install github.com/a-h/templ/cmd/templ@latest && \
- 	go install github.com/cosmtrek/air@latest && \
+ 	go install github.com/air-verse/air@latest && \
  	go install github.com/go-task/task/v3/cmd/task@latest
 
 # run the tail command to keep the container running
