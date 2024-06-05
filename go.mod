@@ -3,6 +3,7 @@ module github.com/axewbotx/barkley
 go 1.22.3
 
 require (
+	github.com/a-h/templ v0.2.707
 	github.com/charmbracelet/log v0.4.0
 	github.com/labstack/echo/v4 v4.12.0
 )

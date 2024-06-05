@@ -1,0 +1,13 @@
+{
+  "name": "barkley",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.4.3"
+  }
+}

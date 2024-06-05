@@ -1,0 +1,20 @@
+package components
+
+// HTML component with proper head tags which is used as a base for every app route
+templ Base_HTML() {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>Barkley: to-do dog</title>
+			<meta name="description" content="to-do dog"/>
+			<link rel="stylesheet" href="public/lib/index.css"/>
+			<script defer src="public/lib/htmx.min.js"></script>
+			<script defer src="public/lib/alpine.min.js"></script>
+		</head>
+		<body class="bg-base-background text-base-text">
+			{ children... }
+		</body>
+	</html>
+}
