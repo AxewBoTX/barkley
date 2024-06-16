@@ -3,9 +3,11 @@ version: "3"
 env:
   BINARY_NAME: "barkley"
   BUILD_DIR: "build"
+  DB: "base.db"
 
 tasks:
   dev:
+    - go generate
     - air -c .air.toml
   air:
     - task: generate
@@ -22,3 +24,4 @@ tasks:
     - go build -o $BUILD_DIR/$BINARY_NAME .
   clean:
     - rm -rf $BUILD_DIR
+    - rm -rf $DB

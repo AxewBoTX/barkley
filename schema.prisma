@@ -1,0 +1,44 @@
+datasource db {
+    provider = "sqlite"
+    url      = "file:base.db"
+}
+
+generator client {
+    provider = "go run github.com/steebchen/prisma-client-go"
+}
+
+model Project {
+    id       String           @id @default(uuid())
+    name     String
+    sections ProjectSection[]
+}
+
+model ProjectSection {
+    id         String        @id @default(uuid())
+    heading    String
+    tasks      ProjectTask[]
+    project_id String
+    project    Project       @relation(fields: [project_id], references: [id])
+}
+
+model ProjectTask {
+    id                 String           @id @default(uuid())
+    heading            String
+    description        String?
+    priority           Int              @default(4)
+    done               Boolean          @default(false)
+    created            DateTime         @default(now())
+    subtasks           ProjectSubTask[]
+    project_section    ProjectSection   @relation(fields: [project_section_id], references: [id])
+    project_section_id String
+}
+
+model ProjectSubTask {
+    id              String      @id @default(uuid())
+    heading         String
+    description     String?
+    priority        Int         @default(4)
+    done            Boolean     @default(false)
+    project_task    ProjectTask @relation(fields: [project_task_id], references: [id])
+    project_task_id String
+}

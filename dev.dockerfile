@@ -12,6 +12,13 @@ ENV PATH="/usr/local/bin:${PATH}"
 # copy all the project files onto the working directory
 COPY . .
 
+# basic container setup (according to my liking)
+RUN apt-get update && \
+	apt-get install -y curl && \
+	apt-get install -y tmux && \
+	bash -c "echo 'PATH="/usr/local/cargo/bin:$PATH"' >> ~/.bashrc" && \
+	bash -c "source ~/.bashrc"
+
 # install needed dependencies
 RUN go mod download && \
 	go install github.com/a-h/templ/cmd/templ@latest && \

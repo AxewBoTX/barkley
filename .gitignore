@@ -177,3 +177,5 @@ dist
 
 tmp
 testdata
+
+base.db
