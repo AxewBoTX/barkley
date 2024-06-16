@@ -1,4 +1,4 @@
-package lib
+package core
 
 // constant declarations
 const (

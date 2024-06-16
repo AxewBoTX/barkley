@@ -1,0 +1,2 @@
+# ignores all the Templ generated HTML template files
+*_templ.go
