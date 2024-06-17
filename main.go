@@ -11,6 +11,7 @@ import (
 
 	"github.com/axewbotx/barkley/core"
 	"github.com/axewbotx/barkley/handlers"
+	"github.com/axewbotx/barkley/handlers/api"
 )
 
 //go:embed all:public/lib
@@ -29,8 +30,10 @@ func main() {
 		Root:       "/",
 	}))
 
-	// registering various routes using handler functions
+	// route handlers
 	app.Server.GET("/", handlers.IndexHandler)
+	// API route groups
+	api.Projects_Group_Handler(app.Server.Group("/api/projects"))
 
 	// this function runs when the whole main function i.e the server successfully closes
 	defer func() {
