@@ -2,7 +2,8 @@
   "name": "barkley",
   "type": "module",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "daisyui": "^4.12.2"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

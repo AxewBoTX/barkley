@@ -1,0 +1,95 @@
+package routes
+
+import (
+	"github.com/axewbotx/barkley/web/components"
+)
+
+templ Test_Page() {
+	@components.Base_HTML() {
+		<div class="p-5 flex flex-col gap-[15px]">
+			// buttons
+			<div class="flex items-center gap-[15px]">
+				<button class="btn btn-outline rounded border-white border-2 hover:border-white hover:shadow-btn-md">
+					Outline
+				</button>
+				<button class="btn btn-primary rounded border-black border-2 hover:border-black hover:shadow-btn-md">
+					Primary
+				</button>
+				<button class="btn btn-secondary rounded border-black border-2 hover:border-black hover:shadow-btn-md">
+					Secondary
+				</button>
+				<button class="btn btn-accent rounded border-black border-2 hover:border-black hover:shadow-btn-md">
+					Accent
+				</button>
+				<button class="btn btn-neutral rounded border-black border-2 hover:border-black hover:shadow-btn-md">
+					Neutral
+				</button>
+				<button class="btn btn-info rounded border-black border-2 hover:border-black hover:shadow-btn-md">
+					Info
+				</button>
+				<button class="btn btn-success rounded border-black border-2 hover:border-black hover:shadow-btn-md">
+					Success
+				</button>
+				<button class="btn btn-warning rounded border-black border-2 hover:border-black hover:shadow-btn-md">
+					Warning
+				</button>
+				<button class="btn btn-error rounded border-black border-2 hover:border-black hover:shadow-btn-md">
+					Error
+				</button>
+			</div>
+			<div class="flex items-center gap-[15px]">
+				<input
+					type="checkbox"
+					checked="checked"
+					class="checkbox border-2 checkbox-primary rounded border-white checked:border-primary [--chkfg:white]"
+				/>
+				<input
+					type="checkbox"
+					checked="checked"
+					class="checkbox border-2 checkbox-secondary rounded border-white checked:border-secondary [--chkfg:white]"
+				/>
+				<input
+					type="checkbox"
+					checked="checked"
+					class="checkbox border-2 checkbox-accent rounded border-white checked:border-accent [--chkfg:white]"
+				/>
+				<input
+					type="checkbox"
+					checked="checked"
+					class="checkbox border-2 checkbox-neutral rounded border-white checked:broder-neutral"
+				/>
+				<input
+					type="checkbox"
+					checked="checked"
+					class="checkbox border-2 checkbox-info rounded border-white checked:border-info [--chkfg:white]"
+				/>
+				<input
+					type="checkbox"
+					checked="checked"
+					class="checkbox border-2 checkbox-success rounded border-white checked:border-success [--chkfg:white]"
+				/>
+				<input
+					type="checkbox"
+					checked="checked"
+					class="checkbox border-2 checkbox-warning rounded border-white checked:border-warning [--chkfg:white]"
+				/>
+				<input
+					type="checkbox"
+					checked="checked"
+					class="checkbox border-2 checkbox-error rounded border-white checked:border-error [--chkfg:white]"
+				/>
+			</div>
+			<div class="flex items-center gap-[15px]">
+				<input type="radio" name="radio" class="radio radio-primary border-2 border-white" checked/>
+				<input type="radio" name="radio" class="radio radio-secondary border-2 border-white"/>
+				<input type="radio" name="radio" class="radio radio-accent border-2 border-white"/>
+				<input type="radio" name="radio" class="radio radio-neutral border-2 border-white"/>
+				<input type="radio" name="radio" class="radio radio-info border-2 border-white"/>
+				<input type="radio" name="radio" class="radio radio-success border-2 border-white"/>
+				<input type="radio" name="radio" class="radio radio-warning border-2 border-white"/>
+				<input type="radio" name="radio" class="radio radio-error border-2 border-white"/>
+			</div>
+			<div class="flex items-center gap-[15px]"></div>
+		</div>
+	}
+}

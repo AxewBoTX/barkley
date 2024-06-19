@@ -6,6 +6,8 @@ env:
   DB: "base.db"
 
 tasks:
+  dev-app:
+    - task --parallel dev dev-tw
   dev:
     - go generate
     - air -c .air.toml

@@ -32,6 +32,7 @@ func main() {
 
 	// route handlers
 	app.Server.GET("/", handlers.IndexHandler)
+	app.Server.GET("/test", handlers.TestHandler)
 	// API route groups
 	api.Projects_Group_Handler(app.Server.Group("/api/projects"))
 
