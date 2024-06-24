@@ -1,5 +1,3 @@
-//go:generate go run github.com/steebchen/prisma-client-go db push
-
 package main
 
 import (
@@ -8,6 +6,8 @@ import (
 
 	"github.com/charmbracelet/log"
 	"github.com/labstack/echo/v4/middleware"
+	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 
 	"github.com/axewbotx/barkley/core"
 	"github.com/axewbotx/barkley/handlers"
@@ -18,10 +18,13 @@ import (
 var LibDir embed.FS
 
 func main() {
-	app_config := core.Config{
-		Port: ":3000",
-	}
-	app := core.NewApplication(app_config)
+	// base application setup
+	app := core.NewApplication(core.Config{
+		Port: core.PORT,
+	}).ConnectDatabase(gorm.Config{
+		Logger: logger.Default.LogMode(logger.Error),
+	})
+	app.Database.HandleMigrations()
 
 	// server static files from `public/lib` directory
 	app.Server.Use(middleware.StaticWithConfig(middleware.StaticConfig{
@@ -40,7 +43,6 @@ func main() {
 
 	// this function runs when the whole main function i.e the server successfully closes
 	defer func() {
-		app.Database.Client.Disconnect()
 		app.Server.Close()
 		log.Info("Server closed successfully")
 	}()

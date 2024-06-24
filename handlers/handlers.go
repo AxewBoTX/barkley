@@ -14,8 +14,7 @@ func IndexHandler(c echo.Context) error {
 	return web.RenderTemplTemplate(c, http.StatusOK, routes.Index_Page())
 }
 
-// /test route handler
-
+// (/test) route handler
 func TestHandler(c echo.Context) error {
 	return web.RenderTemplTemplate(c, http.StatusOK, routes.Test_Page())
 }
