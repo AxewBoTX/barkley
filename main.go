@@ -22,7 +22,6 @@ func main() {
 		Port: ":3000",
 	}
 	app := core.NewApplication(app_config)
-	DB := core.NewDatabase().Connect()
 
 	// server static files from `public/lib` directory
 	app.Server.Use(middleware.StaticWithConfig(middleware.StaticConfig{
@@ -34,11 +33,14 @@ func main() {
 	app.Server.GET("/", handlers.IndexHandler)
 	app.Server.GET("/test", handlers.TestHandler)
 	// API route groups
-	api.Projects_Group_Handler(app.Server.Group("/api/projects"))
+	api.Projects_Group_Handler(app)
+	api.Sections_Group_Handler(app)
+	api.Tasks_Group_Handler(app)
+	api.SubTasks_Group_Handler(app)
 
 	// this function runs when the whole main function i.e the server successfully closes
 	defer func() {
-		DB.Client.Disconnect()
+		app.Database.Client.Disconnect()
 		app.Server.Close()
 		log.Info("Server closed successfully")
 	}()

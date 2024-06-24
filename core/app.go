@@ -9,14 +9,16 @@ type Config struct {
 }
 
 type Application struct {
-	Config Config
-	Server *echo.Echo
+	Config   Config
+	Server   *echo.Echo
+	Database *Database
 }
 
 func NewApplication(config Config) *Application {
 	return &Application{
-		Config: config,
-		Server: echo.New(),
+		Config:   config,
+		Server:   echo.New(),
+		Database: NewDatabase().Connect(),
 	}
 }
 

@@ -13,6 +13,7 @@ tasks:
     - air -c .air.toml
   air:
     - task: generate
+    # - GOFLAGS=-buildvcs=false go build -o ./tmp/main .
     - go build -o ./tmp/main .
   dev-tw:
     - bun tailwindcss -i ./tailwind/input.css -o ./public/lib/index.css --minify --watch
@@ -27,3 +28,4 @@ tasks:
   clean:
     - rm -rf $BUILD_DIR
     - rm -rf $DB
+    - rm -rf ./db/*_gen.go

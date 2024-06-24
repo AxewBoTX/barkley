@@ -17,7 +17,8 @@ RUN apt-get update && \
 	apt-get install -y curl && \
 	apt-get install -y tmux psmisc && \
 	bash -c "echo 'PATH="/usr/local/cargo/bin:$PATH"' >> ~/.bashrc" && \
-	bash -c "source ~/.bashrc"
+	bash -c "source ~/.bashrc" && \
+	git config --global --add safe.directory /usr/src/app
 
 # install needed dependencies
 RUN go mod download && \

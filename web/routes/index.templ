@@ -6,6 +6,29 @@ import (
 
 templ Index_Page() {
 	@components.Base_HTML() {
+		<button
+			onclick="create_new_modal.showModal()"
+			class="fixed bottom-[30px] right-[30px] btn btn-primary rounded border-black border-2 hover:border-black hover:shadow-neu-md"
+		>
+			<span class="iconify mdi--plus-circle w-[30px] h-[30px]"></span>
+			<p>Create new</p>
+		</button>
+		<dialog id="create_new_modal" class="modal">
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			<div class="modal-box rounded border-white border-2 shadow-neu-xl bg-base-background">
+				<h3 class="font-bold text-lg">Hello!</h3>
+				<p class="py-4">Press ESC key or click the button below to close</p>
+				<div class="modal-action">
+					<form method="dialog">
+						<button class="btn btn-outline rounded border-white border-2 hover:border-white hover:shadow-neu-md">
+							Close
+						</button>
+					</form>
+				</div>
+			</div>
+		</dialog>
 		<h1 class="text-2xl">Home Page</h1>
 	}
 }

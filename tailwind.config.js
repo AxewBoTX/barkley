@@ -1,3 +1,5 @@
+const { addIconSelectors } = require("@iconify/tailwind");
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -17,9 +19,9 @@ export default {
           "accent-content": "#000000",
           neutral: "#5F646D",
           "neutral-content": "#FFFFFF",
-          "base-100": "#1E1E1E",
+          "base-100": "#161616",
           "base-200": "#D5DDDE",
-          "base-300": "#B6BDBE",
+          "base-300": "#3f3f3f",
           "base-content": "#FFFFFF",
           info: "#00B5DB",
           "info-content": "#000C11",
@@ -45,12 +47,15 @@ export default {
   theme: {
     extend: {
       fontFamily: {},
-      colors: {},
+      colors: {
+        "base-background": "#000000",
+      },
       boxShadow: {
-        "btn-md": "4px 4px 0 #3f3f3f",
-        "btn-lg": "6px 6px 0 #3f3f3f",
+        "neu-md": "4px 4px 0 #3f3f3f",
+        "neu-lg": "6px 6px 0 #3f3f3f",
+        "neu-xl": "10px 10px 0 #3f3f3f",
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), addIconSelectors(["mdi"])],
 };

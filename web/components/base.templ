@@ -13,8 +13,38 @@ templ Base_HTML() {
 			<script defer src="public/lib/htmx.min.js"></script>
 			<script defer src="public/lib/alpine.min.js"></script>
 		</head>
-		<body class="bg-base-background text-base-text">
-			{ children... }
+		<body>
+			<div class="drawer lg:drawer-open">
+				<input id="app-drawer" type="checkbox" class="drawer-toggle"/>
+				<div class="drawer-content">
+					<label
+						for="app-drawer"
+						class="drawer-button fixed top-[15px] left-[15px] iconify mdi--window-closed w-[30px] h-[30px] hover:cursor-pointer hover:bg-base-300 transition-all"
+					></label>
+					<div class="p-[100px]">
+						{ children... }
+					</div>
+				</div>
+				<div class="drawer-side">
+					<label for="app-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+					<div class="menu p-4 w-80 min-h-full bg-base-background border-r-2 border-black text-base-content">
+						// ----- top section
+						<div class="flex w-full items-center justify-end lg:hidden">
+							<label
+								for="app-drawer"
+								arial-label="close sidebar"
+								class="iconify mdi--window-closed w-[30px] h-[30px] hover:cursor-pointer hover:bg-base-300 transition-all"
+							></label>
+						</div>
+						<div class="flex flex-col items-center">
+							// ----- middle section
+							<p class="text-2xl">Middle Drawer</p>
+							// ----- bottom section
+							<p class="text-2xl">Bottom Drawer</p>
+						</div>
+					</div>
+				</div>
+			</div>
 		</body>
 	</html>
 }

@@ -8,37 +8,37 @@ generator client {
 }
 
 model Project {
-    id       String           @id @default(uuid())
+    id       String    @id @default(uuid())
     name     String
-    sections ProjectSection[]
+    sections Section[]
 }
 
-model ProjectSection {
-    id         String        @id @default(uuid())
+model Section {
+    id         String  @id @default(uuid())
     heading    String
-    tasks      ProjectTask[]
+    tasks      Task[]
     project_id String
-    project    Project       @relation(fields: [project_id], references: [id])
+    project    Project @relation(fields: [project_id], references: [id])
 }
 
-model ProjectTask {
-    id                 String           @id @default(uuid())
-    heading            String
-    description        String?
-    priority           Int              @default(4)
-    done               Boolean          @default(false)
-    created            DateTime         @default(now())
-    subtasks           ProjectSubTask[]
-    project_section    ProjectSection   @relation(fields: [project_section_id], references: [id])
-    project_section_id String
+model Task {
+    id          String    @id @default(uuid())
+    heading     String
+    description String?
+    priority    Int       @default(4)
+    done        Boolean   @default(false)
+    created     DateTime  @default(now())
+    subtasks    SubTask[]
+    section     Section   @relation(fields: [section_id], references: [id])
+    section_id  String
 }
 
-model ProjectSubTask {
-    id              String      @id @default(uuid())
-    heading         String
-    description     String?
-    priority        Int         @default(4)
-    done            Boolean     @default(false)
-    project_task    ProjectTask @relation(fields: [project_task_id], references: [id])
-    project_task_id String
+model SubTask {
+    id          String  @id @default(uuid())
+    heading     String
+    description String?
+    priority    Int     @default(4)
+    done        Boolean @default(false)
+    task        Task    @relation(fields: [task_id], references: [id])
+    task_id     String
 }

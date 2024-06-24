@@ -2,6 +2,8 @@
   "name": "barkley",
   "type": "module",
   "devDependencies": {
+    "@iconify-json/mdi": "^1.1.67",
+    "@iconify/tailwind": "^1.1.1",
     "@types/bun": "latest",
     "daisyui": "^4.12.2"
   },
