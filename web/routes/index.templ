@@ -6,20 +6,13 @@ import (
 
 templ Index_Page() {
 	@components.Base_HTML() {
-		<button
-			onclick="create_new_modal.showModal()"
-			class="fixed bottom-[30px] right-[30px] btn btn-primary rounded border-black border-2 hover:border-black hover:shadow-neu-md"
-		>
-			<span class="iconify mdi--plus-circle w-[30px] h-[30px]"></span>
-			<p>Create new</p>
-		</button>
-		<dialog id="create_new_modal" class="modal">
+		<dialog id="createProjectModal" class="modal">
 			<form method="dialog" class="modal-backdrop">
 				<button>close</button>
 			</form>
 			<div class="modal-box rounded border-white border-2 shadow-neu-xl bg-base-background">
-				<h3 class="font-bold text-lg">Hello!</h3>
-				<p class="py-4">Press ESC key or click the button below to close</p>
+				<h3 class="font-bold text-lg">Create Project</h3>
+				<p class="py-4">You can create a new project!</p>
 				<div class="modal-action">
 					<form method="dialog">
 						<button class="btn btn-outline rounded border-white border-2 hover:border-white hover:shadow-neu-md">
@@ -29,6 +22,44 @@ templ Index_Page() {
 				</div>
 			</div>
 		</dialog>
-		<h1 class="text-2xl">Home Page</h1>
+		<dialog id="createTaskModal" class="modal">
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			<div class="modal-box rounded border-white border-2 shadow-neu-xl bg-base-background">
+				<h3 class="font-bold text-lg">Create Task</h3>
+				<p class="py-4">You can create a new task!</p>
+				<div class="modal-action">
+					<form method="dialog">
+						<button class="btn btn-outline rounded border-white border-2 hover:border-white hover:shadow-neu-md">
+							Close
+						</button>
+					</form>
+				</div>
+			</div>
+		</dialog>
+		<div class="dropdown dropdown-top dropdown-end fixed bottom-[30px] right-[30px]">
+			<button
+				tabindex="0"
+				role="button"
+				class="btn btn-primary rounded border-black border-2 hover:border-black hover:shadow-neu-md"
+			>
+				<span class="iconify mdi--plus-circle w-[30px] h-[30px]"></span>
+				<p>Create new</p>
+			</button>
+			<ul
+				tabindex="0"
+				class="dropdown-content z-[1] menu p-2 shadow bg-base-background rounded w-52 border-white border-2 mb-[15px] shadow-neu-md"
+			>
+				<li><a onclick="createProjectModal.showModal()">Project</a></li>
+				<li><a onclick="createTaskModal.showModal()">Task</a></li>
+			</ul>
+		</div>
+		<div class="flex flex-col">
+			<h1 class="text-3xl">Projects</h1>
+			<h1 class="text-3xl">Sections</h1>
+			<h1 class="text-3xl">Tasks</h1>
+			<h1 class="text-3xl">SubTasks</h1>
+		</div>
 	}
 }
